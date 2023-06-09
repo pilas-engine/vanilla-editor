@@ -1,25 +1,32 @@
 class PilasCanvas extends HTMLElement {
+  game: Phaser.Game;
 
   constructor() {
     super();
-    this.style = "width: 100%; display: flex";
+
+    this.style.width = "100%";
+    this.style.display = "flex";
+
     this.innerHTML = `
       <canvas id="game" style="width: 100%; object-fit: contain"></canvas>
     `
 
+    this.game = this.iniciar_canvas_de_phaser();
+  }
+
+  private iniciar_canvas_de_phaser() {
     let canvas = this.querySelector("#game");
 
-    const config = {
+    const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.WEBGL,
       width: 800,
-      canvas: canvas,
+      canvas: canvas as HTMLCanvasElement,
       height: 600,
       scene: Example
     };
 
-    const game = new Phaser.Game(config);
+    return new Phaser.Game(config);
   }
-
 }
 
 

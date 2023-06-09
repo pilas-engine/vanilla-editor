@@ -1,5 +1,6 @@
 import info from "./utils";
 
+
 class Pilas {
 
   constructor(canvas_id: string) {
