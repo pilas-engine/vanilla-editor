@@ -14,22 +14,44 @@ class PilasCanvas extends HTMLElement {
               ></canvas>
     `
 
-    this.game = this.iniciar_canvas_de_phaser();
+    let width = +(this.getAttribute("width") || "100");
+    let height = +(this.getAttribute("height") || "100");
+
+    this.game = this.iniciar_canvas_de_phaser(width, height);
   }
 
-  private iniciar_canvas_de_phaser() {
+  private iniciar_canvas_de_phaser(width: number, height: number) {
     let canvas = this.querySelector("#game");
 
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.WEBGL,
-      width: 800,
+      width: width,
       canvas: canvas as HTMLCanvasElement,
-      height: 600,
+      height: height,
       scene: Example
     };
 
     return new Phaser.Game(config);
   }
+
+
+  connectedCallback() {
+  }
+
+  disconnectedCallback() {
+  }
+
+  static get observedAttributes() {
+    return [
+      "width",
+      "height",
+    ];
+  }
+
+  attributeChangedCallback(atributo: string, anterior: any, nuevo: any) { 
+    console.log(`El atributo ${atributo} cambió: ${anterior} → ${nuevo}`);
+  }
+
 }
 
 

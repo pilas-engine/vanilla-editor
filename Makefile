@@ -40,3 +40,10 @@ ejecutar:
 
 compilar:
 	npm run build
+
+
+# Alias
+
+build: compilar
+server: ejecutar
+s: ejecutar
