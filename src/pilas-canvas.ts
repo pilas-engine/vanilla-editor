@@ -4,11 +4,14 @@ class PilasCanvas extends HTMLElement {
   constructor() {
     super();
 
-    this.style.width = "100%";
-    this.style.display = "flex";
-
+    this.classList.add("flex");
+    this.classList.add("w-100");
+   
     this.innerHTML = `
-      <canvas id="game" style="width: 100%; object-fit: contain"></canvas>
+      <canvas id="game"
+              class="w-100" 
+              style="object-fit: contain"
+              ></canvas>
     `
 
     this.game = this.iniciar_canvas_de_phaser();
