@@ -27,6 +27,7 @@ comandos:
 	@echo "    ${G}iniciar${N}"
 	@echo "    ${G}ejecutar${N}"
 	@echo "    ${G}compilar${N}"
+	@echo "    ${G}compilar-pilas${N}"
 	@echo ""
 	@echo ""
 
@@ -40,6 +41,9 @@ ejecutar:
 
 compilar:
 	npm run build
+
+compilar-pilas:
+	npm run build-pilas
 
 
 # Alias

@@ -1,5 +1,4 @@
 class PilasCanvas extends HTMLElement {
-  game: Phaser.Game;
 
   constructor() {
     super();
@@ -17,21 +16,18 @@ class PilasCanvas extends HTMLElement {
     let width = +(this.getAttribute("width") || "100");
     let height = +(this.getAttribute("height") || "100");
 
-    this.game = this.iniciar_canvas_de_phaser(width, height);
-  }
-
-  private iniciar_canvas_de_phaser(width: number, height: number) {
+    // @ts-ignore
     let canvas = this.querySelector("#game");
+    pilas.iniciar(canvas, width, height); 
 
-    const config: Phaser.Types.Core.GameConfig = {
-      type: Phaser.WEBGL,
-      width: width,
-      canvas: canvas as HTMLCanvasElement,
-      height: height,
-      scene: Example
-    };
+    // solo para acceder a este elemento desde la consola del
+    // navegador.
+    //window.game = this.game;
+    //game.parent = this.parentElement;
 
-    return new Phaser.Game(config);
+    // Lo siguiente es para hacer que el area de juego
+    // se adapte al tamaño de pantalla.
+    // game.scale.resize(game.parent.clientWidth, game.parent.clientHeight)
   }
 
 
@@ -54,34 +50,5 @@ class PilasCanvas extends HTMLElement {
 
 }
 
-
-class Example extends Phaser.Scene
-{
-  logo: any;
-
-  constructor ()
-  {
-    super();
-  }
-
-  preload ()
-  {
-    this.load.setBaseURL('https://labs.phaser.io');
-
-    this.load.image('sky', 'assets/skies/space3.png');
-    this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-    this.load.image('red', 'assets/particles/red.png');
-  }
-
-  create ()
-  {
-    this.add.image(400, 300, 'sky');
-    this.logo = this.add.image(400, 300, 'logo');
-  }
-
-  update() {
-    this.logo.rotation += 0.01;
-  }
-}
 
 export { PilasCanvas };

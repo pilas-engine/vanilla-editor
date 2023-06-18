@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "amd",
+    "declaration": true,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noEmitOnError": false,
+    "noLib": false,
+    "skipLibCheck": true,
+    "outFile": "../pilas-engine-dist/pilas-engine.js",
+    "lib": ["es6", "dom", "es2015"]
+  },
+  "exclude": ["data", "public"],
+  "atom": {
+    "rewriteTsconfig": true
+  },
+  "include": ["./"]
+}
