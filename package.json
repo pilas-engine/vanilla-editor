@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build --base=./",
-    "build-pilas": "tsc -p pilas-engine",
-    "preview": "vite preview"
+    "compilar-pilas": "tsc -p pilas-engine",
+    "preview": "vite preview",
+    "compilar-pilas-live": "nodemon --watch pilas-engine/* --exec 'make compilar-pilas'"
   },
   "devDependencies": {
+    "nodemon": "^2.0.22",
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
   }

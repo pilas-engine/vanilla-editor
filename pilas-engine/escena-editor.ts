@@ -31,7 +31,7 @@ class EscenaEditor extends Phaser.Scene
     graphics.lineStyle(thickness, color, alpha);
 
     graphics.strokeRect(32, 32, 256, 256);
-    graphics.strokeRect(10, 10, 10, 10);
+    graphics.strokeRect(10, 10, 10, 30);
 
     //this.logo = this.add.image(400, 300, 'logo');
   }

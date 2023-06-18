@@ -32,6 +32,7 @@ var EscenaEditor = (function (_super) {
         var alpha = 1;
         graphics.lineStyle(thickness, color, alpha);
         graphics.strokeRect(32, 32, 256, 256);
+        graphics.strokeRect(10, 10, 10, 30);
     };
     EscenaEditor.prototype.update = function () {
     };
