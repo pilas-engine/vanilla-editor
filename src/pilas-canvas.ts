@@ -6,30 +6,25 @@ class PilasCanvas extends HTMLElement {
     this.classList.add("flex");
     this.classList.add("w-100");
    
-    this.innerHTML = `
-      <canvas id="game"
-              class="w-100" 
-              style="object-fit: contain"
-              ></canvas>
-    `
+    this.innerHTML = this.obtenerTemplate();
 
     let width = +(this.getAttribute("width") || "100");
     let height = +(this.getAttribute("height") || "100");
 
     // @ts-ignore
     let canvas = this.querySelector("#game");
+    
+    // @ts-ignore
     pilas.iniciar(canvas, width, height); 
 
-    // solo para acceder a este elemento desde la consola del
-    // navegador.
-    //window.game = this.game;
-    //game.parent = this.parentElement;
-
-    // Lo siguiente es para hacer que el area de juego
-    // se adapte al tamaño de pantalla.
-    // game.scale.resize(game.parent.clientWidth, game.parent.clientHeight)
+    // pilas es una variable global que genera el proceso de
+    // compilación "make compilar-pilas" y su código principal
+    // está en pilas-engine/pilas.ts
   }
 
+  obtenerTemplate() {
+    return `<canvas id="game"></canvas>`;
+  }
 
   connectedCallback() {
   }

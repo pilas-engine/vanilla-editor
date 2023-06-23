@@ -1,6 +1,7 @@
 class EscenaEditor extends Phaser.Scene
 {
   logo: any;
+  texto: Phaser.GameObjects.Text;
 
   constructor ()
   {
@@ -14,29 +15,49 @@ class EscenaEditor extends Phaser.Scene
     this.load.image('logo', 'assets/sprites/phaser3-logo.png');
     this.load.image('red', 'assets/particles/red.png');
 
-    this.cameras.main.setBackgroundColor("BBB");
-
-
+    this.cameras.main.setBackgroundColor("777");
+    this.texto = this.add.text(0, 50, "Modo edición");
   }
 
   create ()
   {
-    var graphics: Phaser.GameObjects.Graphics;
-    graphics = this.add.graphics();
+    var camara = new Camara(this);
 
-    const thickness = 1;
-    const color = 0x00ff00;
-    const alpha = 1;
+    this.input.enableDebug(camara, 0xff0000);
+    this.add.existing(camara);
 
-    graphics.lineStyle(thickness, color, alpha);
+    this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+      gameObject.x = dragX;
+      gameObject.y = dragY;
+    });
 
-    graphics.strokeRect(32, 32, 256, 256);
-    graphics.strokeRect(10, 10, 10, 30);
+    this.ajustarCanvasModoEdicion();
 
-    //this.logo = this.add.image(400, 300, 'logo');
+    document.addEventListener("comienza-ejecucion", (evento) => {
+      this.ajustarCanvasModoEjecucion();
+    });
+
+    document.addEventListener("finaliza-ejecucion", (evento) => {
+      this.ajustarCanvasModoEdicion();
+    });
+
+  }
+
+  ajustarCanvasModoEjecucion() {
+    this.game.scale.scaleMode = Phaser.Scale.NONE;
+    this.game.scale.resize(400, 400);
+    this.game.scale.refresh();
+    console.debug("Comenzando ejecución");
+    this.texto.text = "Modo ejecución";
+  }
+
+  ajustarCanvasModoEdicion() {
+    this.game.scale.scaleMode = Phaser.Scale.RESIZE;
+    this.game.scale.refresh();
+    console.debug("Finaliza ejecución");
+    this.texto.text = "Modo edición";
   }
 
   update() {
-    //this.logo.rotation += 0.01;
   }
 }
